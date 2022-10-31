@@ -583,3 +583,11 @@ lz4_byte         TurboPFor's [delta]+byte transpose + lz4 2,4,8
 BitShuffle       Bit shuffle (simd) 2,4,8
 </pre>
 
+## Java JNI
+
+```sh
+make java/libic.so
+
+cd java
+java -Djava.library.path=. jicbench.java
+```
