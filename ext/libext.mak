@@ -29,7 +29,7 @@ ifeq ($(CODEC2),1)
 LIBFOR=1
 LITTLEINTPACKER=1
 POLYCOM=1
-QMX=1
+#QMX=1
 RICE=1
 VARINTG8IU=1
 XDEFS+=-DCODEC2
@@ -149,7 +149,7 @@ endif
 
 ifeq ($(LZ4),1)
 XDEFS+=-DLZ4 -Ilz4/lib 
-OB+=ext/lz4/lib/lz4hc.o ext/lz4/lib/lz4.o ext/lz4/lib/lz4frame.o
+OB+=ext/lz4/lib/lz4hc.o ext/lz4/lib/lz4.o ext/lz4/lib/lz4frame.o ext/lz4/lib/xxhash.o
 endif
 
 ifeq ($(LZTURBO),1)
@@ -236,7 +236,8 @@ CFLAGS+=-Iext/zstd/lib -Iext/zstd/lib/common
 XDEFS+=-DZSTD
 OB+=ext/zstd/lib/common/pool.o ext/zstd/lib/common/xxhash.o ext/zstd/lib/common/error_private.o \
     ext/zstd/lib/compress/hist.o ext/zstd/lib/compress/zstd_compress.o ext/zstd/lib/compress/zstd_compress_literals.o ext/zstd/lib/compress/zstd_compress_sequences.o ext/zstd/lib/compress/zstd_double_fast.o ext/zstd/lib/compress/zstd_fast.o ext/zstd/lib/compress/zstd_lazy.o ext/zstd/lib/compress/zstd_ldm.o ext/zstd/lib/compress/zstdmt_compress.o ext/zstd/lib/compress/zstd_opt.o \
-    ext/zstd/lib/decompress/zstd_decompress.o ext/zstd/lib/decompress/zstd_decompress_block.o ext/zstd/lib/decompress/zstd_ddict.o ext/zstd/lib/compress/fse_compress.o ext/zstd/lib/common/fse_decompress.o ext/zstd/lib/compress/huf_compress.o ext/zstd/lib/decompress/huf_decompress.o ext/zstd/lib/common/zstd_common.o ext/zstd/lib/common/entropy_common.o
+    ext/zstd/lib/decompress/zstd_decompress.o ext/zstd/lib/decompress/zstd_decompress_block.o ext/zstd/lib/decompress/zstd_ddict.o ext/zstd/lib/compress/fse_compress.o ext/zstd/lib/common/fse_decompress.o ext/zstd/lib/compress/huf_compress.o ext/zstd/lib/decompress/huf_decompress.o ext/zstd/lib/common/zstd_common.o ext/zstd/lib/common/entropy_common.o ext/zstd/lib/compress/zstd_compress_superblock.o\
+    ext/zstd/lib/decompress/huf_decompress_amd64.o
 endif
 
 ifeq ($(POLYCOM),1)

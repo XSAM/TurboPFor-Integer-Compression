@@ -1,8 +1,12 @@
-TurboPFor: Fastest Integer Compression [![Build Status](https://travis-ci.org/powturbo/TurboPFor-Integer-Compression.svg?branch=master)](https://travis-ci.org/powturbo/TurboPFor-Integer-Compression)
+TurboPFor: Fastest Integer Compression 
+
+[//]: # ([![Build Status][travisBadge]][travisLink])
+[//]: # ([travisBadge]: https://api.travis-ci.com/powturbo/TurboPFor-Integer-Compression.svg?branch=master)
+[//]: # ([travisLink]: https://app.travis-ci.com/powturbo/TurboPFor-Integer-Compression)
 ======================================
-* **TurboPFor: The new synonym for "integer compression"**
-  * :new: (2019.11) **ALL** functions now available for **64 bits ARMv8 NEON** & **Power9 Altivec**
-  * 100% C (C++ headers), as simple as memcpy. OS:Linux amd64, arm64, Power9, MacOs
+* **TurboPFor: The synonym for "integer compression"**
+  * **ALL** functions available for **AMD/Intel**, **64 bits ARMv8 NEON** Linux+MacOS/M1 & **Power9 Altivec**
+  * 100% C (C++ headers), as simple as memcpy. OS:Linux amd64, arm64, Power9, MacOs (Amd/intel + Apple M1),
   * :+1: **Java** Critical Natives/JNI. Access TurboPFor **incl. SIMD/AVX2!** from Java as fast as calling from C
   * :sparkles: **FULL** range 8/16/32/64 bits scalar + 16/32/64 bits SIMD functions
   * No other "Integer Compression" compress/decompress faster
@@ -13,13 +17,13 @@ TurboPFor: Fastest Integer Compression [![Build Status](https://travis-ci.org/po
   * Outstanding compression/speed. More efficient than **ANY** other fast "integer compression" scheme.
   * Compress 70 times faster and decompress up to 4 times faster than OptPFD
 * **Bit Packing**
-  * Fastest and most efficient **"SIMD Bit Packing"** **10 Billions integers/sec (40Gb/s!)**
+  * Fastest and most efficient **"SIMD Bit Packing"** **15 Billions integers/sec (60Gb/s!)**
   * Scalar **"Bit Packing"** decoding nearly as fast as SIMD-Packing in realistic (No "pure cache") scenarios
   * **Direct/Random Access** : Access any single bit packed entry with **zero decompression**
 * **Variable byte**
   * Scalar **"Variable Byte"** faster and more efficient than **ANY** other implementation
-  * :new: (2019.11) SIMD **TurboByte** fastest group varint (16+32 bits) incl. integrated delta,zigzag,...
-  * :new: (2019.11) **TurboByte+TurboPackV** novel hybrid scheme combining the fastest SIMD codecs.
+  * SIMD **TurboByte** fastest group varint (16+32 bits) incl. integrated delta,zigzag,...
+  * **TurboByte+TurboPackV** novel hybrid scheme combining the fastest SIMD codecs.
 * **Simple family**
   * **Novel** **"Variable Simple"** (incl. **RLE**) faster and more efficient than simple16, simple-8b
 * **Elias fano**
@@ -31,7 +35,7 @@ TurboPFor: Fastest Integer Compression [![Build Status](https://travis-ci.org/po
   * Delta/Zigzag + improved gorilla style + (Differential) Finite Context Method FCM/DFCM floating point compression
   * Using **TurboPFor**, unsurpassed compression and more than 5 GB/s throughput
   * Point wise relative error bound **lossy** floating point compression
-  * :new: (2019.11) **TurboFloat** novel efficient floating point compression using TurboPFor
+  * **TurboFloat** novel efficient floating point compression using TurboPFor
 * **Time Series Compression**
   * **Fastest Gorilla** 16/32/64 bits style compression (**zigzag of delta** + **RLE**).
   * can compress times series to only 0.01%. Speed > 10 GB/s compression and > 13 GB/s decompress.
@@ -47,7 +51,7 @@ TurboPFor: Fastest Integer Compression [![Build Status](https://travis-ci.org/po
 ![Promo video](turbopfor.jpg?raw=true)
 
 ### Integer Compression Benchmark (single thread):
-- :new: Download [IcApp](https://sites.google.com/site/powturbo/downloads) a new benchmark for TurboPFor<br>
+- Download [IcApp](https://sites.google.com/site/powturbo/downloads) a new benchmark for TurboPFor<br>
   for testing allmost all integer and floating point file types.
 - Practical (No **PURE** cache) "integer compression" benchmark w/ **large** arrays.
 - [Benchmark Intel CPU: Skylake i7-6700 3.4GHz gcc 9.2](https://github.com/powturbo/TurboPFor/issues/47)
@@ -429,6 +433,7 @@ Note: Some low level functions (like p4enc32) are limited to 128/256 (SSE/AVX2) 
 - Linux arm64: 64 bits aarch64 ARMv8:  gcc (>=6.3)
 - Linux arm64: 64 bits aarch64 ARMv8:  clang
 - MaxOS: XCode (>=9)
+- MaxOS: Apple M1 (Clang)
 - PowerPC ppc64le (incl. SIMD): gcc (>=8.0)
 
 ###### Multithreading:
@@ -458,6 +463,7 @@ Note: Some low level functions (like p4enc32) are limited to 128/256 (SSE/AVX2) 
   * <a name="DocId"></a>[Document identifier data set](http://lemire.me/data/integercompression2014.html)
 
 * **Integer compression publications:**
+  * :green_book:[Evaluating Lightweight Integer Compression Algorithms in Column-Oriented In-Memory DBMS](http://www.adms-conf.org/2021-camera-ready/heinzl_adms21.pdf)
   * :green_book:[In Vacuo and In Situ Evaluation of SIMD Codecs (TurboPackV,TurboPFor/QMX)](http://dl.acm.org/citation.cfm?id=3015023) + [paper](http://www.cs.otago.ac.nz/homepages/andrew/papers/)
   * :green_book:[SIMD Compression and the Intersection of Sorted Integers](http://arxiv.org/abs/1401.6399)
   * :green_book:[Partitioned Elias-Fano Indexes](http://www.di.unipi.it/~ottavian/files/elias_fano_sigir14.pdf)
@@ -468,7 +474,7 @@ Note: Some low level functions (like p4enc32) are limited to 128/256 (SSE/AVX2) 
   * :green_book:[SPDP is a compression/decompression algorithm for binary IEEE 754 32/64 bits floating-point data](http://cs.txstate.edu/~burtscher/research/SPDPcompressor/)<br />
     :green_book:[ SPDP - An Automatically Synthesized Lossless Compression Algorithm for Floating-Point Data](http://cs.txstate.edu/~mb92/papers/dcc18.pdf) + [DCC 2018](http://www.cs.brandeis.edu//~dcc/Programs/Program2018.pdf)
 
-Last update:  20 Aug 2020
+Last update:  13 Nov 2021
 
 ## APPENDIX: icbench Integer Compression Benchmark
 

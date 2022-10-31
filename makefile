@@ -14,6 +14,7 @@ CXX ?= g++
 #CC=powerpc64le-linux-gnu-gcc
 CL = $(CC)
 #DEBUG=-DDEBUG -g
+DEBUG=-DNDEBUG -s
 
 JAVA_HOME ?= /usr/lib/jvm/java-8-openjdk-amd64
 PREFIX ?= /usr/local
@@ -23,7 +24,7 @@ DIRLIB ?= $(PREFIX)/lib
 
 OPT=-fstrict-aliasing -fPIC
 ifeq (,$(findstring clang, $(CC)))
-OPT+=-falign-loops
+OPT+=-falign-loops 
 endif
 
 #------- OS/ARCH -------------------
@@ -47,12 +48,10 @@ ifeq ($(ARCH),ppc64le)
   SSE=-D__SSSE3__
   CFLAGS=-mcpu=power9 -mtune=power9 $(SSE)
 else ifeq ($(ARCH),aarch64)
-  CFLAGS+=-march=armv8-a 
+  CFLAGS=-march=armv8-a 
 ifneq (,$(findstring clang, $(CC)))
-  CFLAGS+=-march=armv8-a 
-  OPT+=-fomit-frame-pointer
-else
-  CFLAGS+=-march=armv8-a 
+  OPT+=-fomit-frame-pointer 
+#-fmacro-backtrace-limit=0
 endif
   SSE=-march=armv8-a
 else ifeq ($(ARCH),$(filter $(ARCH),x86_64))
@@ -61,6 +60,7 @@ else ifeq ($(ARCH),$(filter $(ARCH),x86_64))
 # SSE+=-mno-avx -mno-aes
   CFLAGS=$(SSE)
   AVX2=-march=haswell
+#  SSE=$(AVX2)
 endif
 
 CFLAGS+=-w -Wall $(DEBUG) $(OPT) 
@@ -114,6 +114,7 @@ transpose_avx2.o: transpose.c
 LIB=bitpack.o bitpack_sse.o bitunpack.o bitunpack_sse.o \
     vp4c.o vp4c_sse.o vp4d.o vp4d_sse.o \
 	bitutil.o fp.o v8.o vint.o transpose.o transpose_sse.o trlec.o trled.o vsimple.o eliasfano.o
+#bic.o 	
 ifeq ($(ARCH),x86_64)
 LIB+=bitpack_avx2.o bitunpack_avx2.o vp4c_avx2.o vp4d_avx2.o transpose_avx2.o
 endif
@@ -146,7 +147,7 @@ myapp: myapp.o libic.a
 	$(CC) $^ $(LDFLAGS) -o myapp
 
 mycpp: mycpp.o libic.a
-	$(CXX) $^ $(LDFLAGS) -lpthread -o mycpp
+	$(CXX) $^ $(LDFLAGS) -o mycpp
 
 .c.o:
 	$(CC) -O3 $(CFLAGS) $< -c -o $@  
@@ -166,4 +167,3 @@ clean:
 	@find . -type f -name "*\.o" -delete -or -name "*\~" -delete -or -name "core" -delete -or -name "icbench" -delete -or -name "libic.a" -delete
 	@find . -type f -name "icbench" -delete -or -name "idxqry" -delete -or -name "idxseg" -delete -or -name "idxcr" -delete -or -name "icapp" -delete
 endif
-
