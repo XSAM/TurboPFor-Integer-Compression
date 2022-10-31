@@ -1,7 +1,7 @@
 /**
     Copyright (C) powturbo 2013-2019
     GPL v2 License
-  
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -26,7 +26,7 @@
 /* Usage: (make java/jicbench)
 1 - generate header jic.h 
 $ cd TurboPFor/java
-$ javah -jni jic
+$ javac -h . jic.java
 $ cp jic.h ..
 
 2 - Compile jic and jicbench
@@ -45,15 +45,14 @@ $java jicbench
 */
 
 class jicbench {
-  // Note: this is a simple interface test not a real benchmark 
+  // Note: this is a simple interface test not a real benchmark
 
   public static void main(String args[]) {
-    int bnum = 12500;
+    int bnum = 160000000; // 160 million 32-bit numbers.
 
     jic ic = new jic();
     final  int[]  in = new  int[bnum];
     final byte[] out = new byte[bnum*4];
-    // final byte[] out = new byte[bnum*4*5/3+1024];
     final  int[] cpy = new  int[bnum];
 
     for (int i = 0; i < bnum; ++i) {
@@ -61,12 +60,10 @@ class jicbench {
       cpy[i] = 0;
     }
 
-
     long t0 = System.currentTimeMillis();
     ic.p4nenc32(in, bnum, out);
-    long t = System.currentTimeMillis() - t0;    
+    long t = System.currentTimeMillis() - t0;
     System.out.println("encode time'" + t + "'");
-
 
     t0 = System.currentTimeMillis();
     ic.p4ndec32(out, bnum, cpy);
