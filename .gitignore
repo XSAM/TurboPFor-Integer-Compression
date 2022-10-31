@@ -5,3 +5,11 @@ msvc.build/
 *.exe
 *.lib
 *.o
+*.so
+*.a
+*.class
+*.iml
+
+.idea/
+icapp
+jic.h
