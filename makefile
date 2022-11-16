@@ -129,7 +129,7 @@ JAVA_SUBDIR = java
 
 jic.h: $(JAVA_SUBDIR)/jic.java
 	# cp jic.h ..
-	cd $(JAVA_SUBDIR) && javac -h . jic.java && cp jic.h ..
+	cd $(JAVA_SUBDIR) && javac -h . jic.java && cp powturbo_turbo_jic.h ../jic.h
 
 # $(JAVA_SUBDIR)/jic.class : $(JAVA_SUBDIR)/jic.java
 # 	cd $(JAVA_SUBDIR) && javac jic.java

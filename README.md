@@ -589,5 +589,6 @@ BitShuffle       Bit shuffle (simd) 2,4,8
 make java/libic.so
 
 cd java
-java -Djava.library.path=. jicbench.java
+javac -d ./build jic.java
+java -Djava.library.path=. -classpath build jicbench.java
 ```

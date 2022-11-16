@@ -43,6 +43,7 @@ $ Search "/usr/lib/" for the file "jni.h" and replace the JDK name "default-java
 5 - start jicbench
 $java jicbench
 */
+import powturbo.turbo.jic;
 
 class jicbench {
   // Note: this is a simple interface test not a real benchmark
