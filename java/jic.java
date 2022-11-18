@@ -148,36 +148,4 @@ public class jic {
       System.exit(1);
     }
   }
-
-  public static void main(String args[]) {
-    int bnum = 160000000; // 160 million 32-bit numbers.
-
-    jic ic = new jic();
-    final  int[]  in = new  int[bnum];
-    final byte[] out = new byte[bnum*4];
-    final  int[] cpy = new  int[bnum];
-
-    for (int i = 0; i < bnum; ++i) {
-      in[i] = i;
-      cpy[i] = 0;
-    }
-
-    long t0 = System.currentTimeMillis();
-    ic.p4nenc32(in, bnum, out);
-    long t = System.currentTimeMillis() - t0;
-    System.out.println("encode time'" + t + "'");
-
-    t0 = System.currentTimeMillis();
-    ic.p4ndec32(out, bnum, cpy);
-    t = System.currentTimeMillis() - t0;
-    System.out.println("decode time'" + t + "'");
-
-    for (int i = 0; i < bnum; ++i) {
-      if(in[i] != cpy[i]) {
-        System.err.println("Error at'" + i + "'");
-        System.exit(1);
-      }
-    }
-    System.out.println("check pass");
-  }
 }
