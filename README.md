@@ -591,4 +591,7 @@ make java/libic.so
 cd java
 javac -d ./build jic.java
 java -Djava.library.path=. -classpath build jicbench.java
+
+# Move this lib as a shared lib
+cp libic.so /usr/lib/libic.so
 ```
